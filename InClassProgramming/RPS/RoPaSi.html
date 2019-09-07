@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="RoPaSi.css">
+
+    <title>RockPaperSci</title>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+    <h1>Rock Paper Scissors</h1>
+    <p>May the force be with you!</p>
+</div>
+
+<script>
+    var myArray = [
+        "ROCK",
+        "PAPER",
+        "SCISSORS"
+    ];
+
+    var defau="begin the game";
+    function myRandom() {
+
+        var randomItem1 = prompt("Do you choose rock, paper or scissors?");
+        randomItem1 = randomItem1.toUpperCase();
+        var randomItem2 = myArray[Math.floor(Math.random() * myArray.length)];
+
+        console.log('in random ' + randomItem1);
+        if (randomItem1 === "ROCK" || randomItem1 === "PAPER" || randomItem1 === "SCISSORS") {
+            document.getElementById("player1").innerHTML = randomItem1;
+            document.getElementById("player2").innerHTML = randomItem2;
+
+            if (randomItem1 === randomItem2) {
+                document.getElementById("result").innerHTML = "It's a Draw !!";
+                document.getElementById("box1").style.backgroundColor = "white";
+                document.getElementById("box2").style.backgroundColor = "white";
+            }
+            if (randomItem1 === "ROCK") {
+                if (randomItem2 === "SCISSORS") {
+                    document.getElementById("result").innerHTML = "Player two got STONED by player 1";
+                    document.getElementById("box1").style.backgroundColor = "green";
+                    document.getElementById("box2").style.backgroundColor = "red";
+                    // document.getElementById("box2").style.backgroundColor = "green";
+                    // var reset = confirm("Press ok to play again!");
+                    // if (reset == true) {
+                    //     document.getElementById("player1").innerHTML = defau;
+                    //     document.getElementById("player2").innerHTML = defau;
+                    //     document.getElementById("box2").style.backgroundColor = "grey";
+                    //     document.getElementById("box2").style.backgroundColor = "blue";
+                    //
+                    // } else {
+                    //     myWindow.close();
+                    //     txt = "You pressed Cancel!";
+                    // }
+
+                } else {
+                    if (randomItem2 === "PAPER") {
+                        document.getElementById("result").innerHTML = "Player two Beats player one";
+                        document.getElementById("box2").style.backgroundColor = "green";
+                        document.getElementById("box1").style.backgroundColor = "red";
+                    }
+                }
+            }
+
+            if (randomItem1 === "PAPER") {
+                if (randomItem2 === "ROCK") {
+                    document.getElementById("result").innerHTML = "Player 1 wins";
+                    document.getElementById("box1").style.backgroundColor = "green";
+                    document.getElementById("box2").style.backgroundColor = "red";
+                } else {
+                    if (randomItem2 === "SCISSORS") {
+                        document.getElementById("result").innerHTML = "Player 2 wins";
+                        document.getElementById("box2").style.backgroundColor = "green";
+                        document.getElementById("box1").style.backgroundColor = "red";
+                    }
+                }
+                if (randomItem1 === "SCISSORS") {
+                    if (randomItem2 === "ROCK") {
+                        document.getElementById("result").innerHTML = "Player 2 wins";
+                        document.getElementById("box2").style.backgroundColor = "green";
+                        document.getElementById("box1").style.backgroundColor = "red";
+                    } else {
+                        if (randomItem2 === "PAPER") {
+                            document.getElementById("result").innerHTML = "Player 1 wins";
+                            document.getElementById("box1").style.backgroundColor = "green";
+                            document.getElementById("box2").style.backgroundColor = "red";
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            alert("invalid input");
+        }
+
+    }
+    function reset(){
+            document.getElementById("player1").innerHTML = defau;
+            document.getElementById("player2").innerHTML = defau;
+            document.getElementById("box1").style.backgroundColor = "grey";
+            document.getElementById("box2").style.backgroundColor = "lightskyblue";
+            document.getElementById("result").innerHTML = "click play to start the game";
+
+    }
+
+    console.log("player1 - "+randomItem1+" player2 - "+randomItem2);
+
+</script>
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-6 col-lg-6" id="box1">
+            <p>Player 1 chose - <span id="player1">begin the game</span></p>
+        </div>
+        <div class="col-md-6 col-lg-6" id="box2" >
+            <p>COMPUTER chose - <span id="player2">begin the game</span></p>
+        </div>
+
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-10 col-md-10" >
+            <button class="btn-primary"  style="margin: 0 auto;" onclick="myRandom()">Play</button>
+            <button class="btn-danger"  style="margin: 0 auto;" onclick="reset()">Reset</button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12" >
+            <h2 id="result" class="jumbotron text-center">click play to start the game</h2>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
